@@ -3,6 +3,7 @@ from typing import List, Optional, Tuple
 
 Board = List[List[Optional[int]]]
 Position = Tuple[int, int]
+Resolution = Tuple[int, int]
 INFINITY = 1000000  # Actually anything greater than 1 will work, as the only possible scores are -1, 0 and 1
 
 
@@ -122,12 +123,12 @@ class TicTacToe:
     PLAYER_1_COLOR = (250, 86, 42)
     PLAYER_2_COLOR = (233, 160, 0)
 
-    def __init__(self, window_size: Tuple[int, int], player_1_input: PlayerInput, player_2_input: PlayerInput):
+    def __init__(self, window_size: Resolution, player_1_input: PlayerInput, player_2_input: PlayerInput):
         self.window_size = window_size
         self.player_1_input = player_1_input
         self.player_2_input = player_2_input
 
-    def play(self) -> None:
+    def play(self) -> int:
         pygame.init()
         window = pygame.display.set_mode(self.window_size)
         pygame.display.set_caption('TicTacToe')
@@ -215,7 +216,7 @@ if __name__ == '__main__':
     player_1_input = UserInput()
     player_2_input = AlphaBetaInput()
 
-    game = TicTacToe((600, 600), player_1_input, player_2_input)
+    game = TicTacToe((800, 600), player_1_input, player_2_input)
     winner = game.play()
 
     print('Winner: %d' % winner)
